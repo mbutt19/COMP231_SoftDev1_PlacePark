@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
+import { Dimensions, StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -7,9 +8,17 @@ import { Text, View } from '../components/Themed';
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <MapView style={styles.mapStyle} loadingEnabled={true}
+            initialRegion={{
+              latitude: 43.78682513036524,
+              longitude: -79.2276669708375,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.0021
+            }}>
+ 
+      </MapView>
+      
+      
     </View>
   );
 }
@@ -20,13 +29,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
+  mapStyle:{
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height
+  }
 });

@@ -1,0 +1,15 @@
+Using Visual Studio Code, CLI, Expo (via VSCode terminal or CLI)
+-----------------------------------------
+Node.js (If you don't have it)
+Expo { CLI command: npm i -g expo-cli} from the containing folder
+ 
+IN VSCODE:
+      Extensions: "React Native Tools" & "React-Native/React/Redux"
+
+
+
+Expo Client Mobile App (This will let you connect your device & view changes in real time)
+
+
+UNDERSTAND SETUP AND STRUCTURE WITH THIS YOUTUBE TUTORIAL:
+https://www.youtube.com/watch?v=0-S5a0eXPoc

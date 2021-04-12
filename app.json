@@ -25,10 +25,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB_tMP0PtXRsrS15Wh_41ORfrf5Jadyxo4"
+        }
       }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": "A Parking Finder App For COMP231 - A map that tells you your location is the only functionality now",
+    "githubUrl": "https://github.com/mbutt19/PlacePark"
   }
 }

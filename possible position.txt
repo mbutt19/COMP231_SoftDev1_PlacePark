@@ -1,0 +1,27 @@
+React.useEffect(() => {
+    load()
+  }, [])
+  async function load(){
+    try{
+      let {status} = await Location.requestPermissionsAsync()
+
+      if(status !== 'granted'){
+        setErrorMsg('Access to locatopm needs to be granted')
+        return
+      }
+      const currentLocation = await Location.getCurrentPositionAsync()
+      const {latitude, longitude} = currentLocation.coords
+      console.log(latitude +' ' + longitude)
+      // alert('Latitude: '+latitude+', Longitude: '+longitude)
+
+      let initialPosition = {
+        latitude: latitude,
+        longitude: longitude,
+        latitudeDelta: 0.026,
+        longitudeDelta: 0.026
+      }
+
+      this.setState({initialPosition})
+
+    } catch (error){}
+  }
