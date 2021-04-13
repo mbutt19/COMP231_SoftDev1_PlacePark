@@ -20,17 +20,15 @@ export default function TabThreeScreen() {
   }
   const state = {
     coordinates: [
-      { name: '1', latitude: 43.795, longitude: -79.237 },
-      { name: '2', latitude: 43.78, longitude: -79.237 },
-      { name: '3', latitude: 43.78, longitude: -79.22 },
-      { name: '4', latitude: 43.795, longitude: -79.22 }
+      { name: '1', latitude: 43.78682513036, longitude: -79.2276669708 }
     ]
   }
-  const circ = { latitude: 43.795, longitude: -79.237 }
+  const circ = { latitude: 43.78682513036, longitude: -79.2276669708 }
   const [location, setLocation] = React.useState(null);
   const [errorMsg, setErrorMsg] = React.useState(null);
   const [currentPosition, setCurrentPosition] = useState(intialRegion)
   const [circleCenter, setCircleCenter] = useState(circ)
+  const [markerSource, setMarkerSource] = useState(state.coordinates)
   
 
   React.useEffect(() => {
@@ -56,8 +54,43 @@ export default function TabThreeScreen() {
       const circle = { latitude: location.coords.latitude, longitude: location.coords.longitude }
       setCircleCenter(circle)
       
-      state.coordinates
+      const markerURL = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.coords.latitude},${location.coords.longitude}&radius=2000&keyword=parking&key=AIzaSyAYN4xl-yUbmmFYp-CVz2xRi1a6ENkELIk`
       
+      const response = await fetch(markerURL)
+      
+      if(response.ok){
+        const data = await response.json()
+        const sort = await data.results
+        //console.log(sort)
+        const markers = [{ name: '1', latitude: 43.78682513036, longitude: -79.2276669708 }]
+
+        for(var i=0; i<sort.length; i++)
+        {
+            let temp = {name: `${sort[i]["name"]}`, latitude: sort[i]["geometry"]["location"]["lat"], longitude: sort[i]["geometry"]["location"]["lng"]}
+            markers[i]["name"] = sort[i]["name"]
+            markers[i]["latitude"] = sort[i]["geometry"]["location"]["lat"]
+            markers[i]["longitude"] = sort[i]["geometry"]["location"]["lng"]
+        }
+        
+        sort.forEach(element => {
+         // console.log(element["name"])
+         let name = element["name"]
+         let lat = element["geometry"]["location"]["lat"]
+         let long = element["geometry"]["location"]["lng"]
+        var i = 0;
+         //markers["name"] = name
+         //markers["latitude"] = lat
+         //markers["longitude"] = long
+         i++
+         //console.log(markers)
+        });
+        
+        setMarkerSource(markers)
+        // console.log(markers)
+
+        //console.log(sort[0]["geometry"]["location"])
+      }
+
     })();
   }, []);
 
@@ -94,7 +127,7 @@ export default function TabThreeScreen() {
 
               <Circle 
               center={circleCenter} 
-              radius={500} fillColor={'rgba(100, 100, 200, 0.3)'}/>
+              radius={1000} fillColor={'rgba(100, 100, 200, 0.3)'}/>
 
               <Marker
                 coordinate =  {{latitude: 43.78682513036, longitude: -79.2276669708}}
@@ -119,6 +152,20 @@ export default function TabThreeScreen() {
                         <Text>{marker.name}</Text>
                       </Callout>
                   </Marker>
+                  ))
+                }
+                {
+                  markerSource.map(marker => (
+                    <Marker
+                    key={marker.name} coordinate={{latitude:marker.latitude, longitude: marker.longitude}}
+                    title={marker.name}
+                    >
+                      <Callout onPress={shoeWelcomeMessage}>
+                        <Ionicons name='car-outline' size={25} />
+                        <Text>{marker.name}</Text>
+                      </Callout>
+
+                    </Marker>
                   ))
                 }
       </MapView>
