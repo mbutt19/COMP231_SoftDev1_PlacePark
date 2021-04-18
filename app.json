@@ -35,7 +35,7 @@
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "description": "A Parking Finder App For COMP231 - A map that tells you your location is the only functionality now",
+    "description": "A Parking Finder App For COMP231 - Find Parking near you or search for parking space near an address",
     "githubUrl": "https://github.com/mbutt19/PlacePark"
   }
 }

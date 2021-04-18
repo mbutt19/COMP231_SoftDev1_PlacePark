@@ -150,7 +150,7 @@ export default function TabThreeScreen() {
   return (
     <View style={styles.container}>
       <View>
-      <SearchBar placeholder="Search here" clearButtonMode={'never'}
+      <SearchBar placeholder="Enter Address" clearButtonMode={'never'}
         onChangeText={(text) => setSearchVal(text)} dataDetectorTypes={'address'}
         onClearPress={(text) => {text="", Keyboard.dismiss} } style={styles.search} onSubmitEditing={search}
         autoCompleteType={'street-address'} returnKeyType={'search'}
