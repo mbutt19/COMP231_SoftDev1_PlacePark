@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
@@ -8,8 +9,7 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Ionicons name='home-outline' size={120}/>
     </View>
   );
 }
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   separator: {
